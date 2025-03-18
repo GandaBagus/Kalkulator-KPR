@@ -50,9 +50,28 @@ struct ContentView: View {
             }
             .padding(.leading, -180.0)
             HStack{
+                
                 TextField("Masukkan jumlah tenor", text: .constant("")).textFieldStyle(.roundedBorder)
                 Text("Bulan  ")
             }
+            
+            HStack{
+                Spacer()
+                   
+                Button("Clear"){
+                   
+                }
+                HStack{
+                    Text("             ")
+                }
+            }
+//            ZStack(alignmnet: .trailing){
+//                
+//                
+//            }
+            
+            
+            
             
         }
         .padding([.top, .leading, .trailing], 0.0)

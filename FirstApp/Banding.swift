@@ -6,6 +6,7 @@
 //
 import SwiftUI
  
+let cicilan = 10
 struct Banding: View {
     var body: some View {
             VStack {
