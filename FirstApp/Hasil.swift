@@ -74,6 +74,7 @@ struct Hasil: View{
         .padding(.top)
         .buttonStyle(.bordered)
         
+        
        
 
     }

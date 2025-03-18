@@ -37,6 +37,7 @@ struct ContentView: View {
             }
             .padding(.leading, -180.0)
             HStack{
+                
                 TextField("Masukkan besaran bunga", text: .constant("")).textFieldStyle(.roundedBorder)
                 Text("%        ")
             }
