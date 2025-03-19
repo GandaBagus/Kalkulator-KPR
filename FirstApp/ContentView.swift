@@ -19,66 +19,72 @@ struct ContentView: View {
         
         
         //GroupBox() {
-        VStack{
-            Label {
-                Text("Harga Rumah")
-            } icon: {
-                // Image(systemName: "ruler")
-            }
-            .padding(.leading, -180.0)
-            HStack{
-                TextField("Masukkan harga rumah", text: .constant("")).textFieldStyle(.roundedBorder)
-                Text("Rp      ")
-            }
-            
-            
-            Label {
-                Text("Bunga")
-            } icon: {
-                //Image(systemName: "ruler")
-            }
-            .padding(.leading, -180.0)
-            HStack{
+        ZStack{
+            Color("TintedGreen")
+            VStack (spacing:20){
+                Label {
+                    Text("Harga Rumah")
+                } icon: {
+                    // Image(systemName: "ruler")
+                }
+                .padding(.leading, -180.0)
+                HStack{
+                    TextField("Masukkan harga rumah", text: .constant("")).textFieldStyle(.roundedBorder)
+                    Text("Rp      ")
+                }
                 
-                TextField("Masukkan besaran bunga", text: .constant("")).textFieldStyle(.roundedBorder)
-                Text("%        ")
-            }
-            
-            
-            Label {
-                Text("Tenor")
-            } icon: {
-                //Image(systemName: "ruler")
-            }
-            .padding(.leading, -180.0)
-            HStack{
                 
-                TextField("Masukkan jumlah tenor", text: .constant("")).textFieldStyle(.roundedBorder)
-                Text("Bulan  ")
-            }
-            
-            HStack{
-                Spacer()
+                Label {
+                    Text("Bunga")
+                } icon: {
+                    //Image(systemName: "ruler")
+                }
+                .padding(.leading, -180.0)
+                HStack{
+                    
+                    TextField("Masukkan besaran bunga", text: .constant("")).textFieldStyle(.roundedBorder)
+                    Text("%        ")
+                }
                 
-                Button("Clear"){
+                
+                Label {
+                    Text("Tenor")
+                } icon: {
+                    //Image(systemName: "ruler")
+                }
+                .padding(.leading, -180.0)
+                HStack{
+                    
+                    TextField("Masukkan jumlah tenor", text: .constant("")).textFieldStyle(.roundedBorder)
+                    Text("Bulan  ")
+                }
+                
+                HStack{
+                    Spacer()
+                    
+                    Button("Clear"){
+                        
+                    }
+                    HStack{
+                        Text("             ")
+                    }
+                    //  }
+                    //            ZStack(alignmnet: .trailing){
+                    //
+                    //
+                    //            }
+                    
+                    
+                    
                     
                 }
-                HStack{
-                    Text("             ")
-                }
-                //  }
-                //            ZStack(alignmnet: .trailing){
-                //
-                //
-                //            }
-                
-                
-                
-                
+                .padding([.top, .leading, .trailing], 0.0)
             }
-            .padding([.top, .leading, .trailing], 0.0)
+            .padding(.leading)
         }
-        .padding([.top, .leading])
+        .clipShape(RoundedRectangle(cornerRadius: 30))
+        
+        
         
         
         HStack{
@@ -93,6 +99,7 @@ struct ContentView: View {
         }
         .padding(.top)
         .buttonStyle(.bordered)
+        
         
         Spacer()
         
