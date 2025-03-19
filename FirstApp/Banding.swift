@@ -11,7 +11,7 @@ struct Banding: View {
     var body: some View {
             VStack {
                 Text("Your Final Result")
-                    .font(.title)
+                    .font(.largeTitle)
                     .bold()
                     .padding(.bottom, 10)
                 
@@ -27,7 +27,7 @@ struct Banding: View {
                 }
             }
             .padding()
-            .buttonStyle(.bordered)
+            .buttonStyle(.borderedProminent)
         }
     }
 

@@ -6,22 +6,24 @@
 //
 
 import SwiftUI
- 
+
 struct ContentView: View {
     var body: some View {
         
         Text("Masukkan Data")
             .fontWeight(.black)
             .font(.largeTitle)
+            .padding(.vertical, 100.0)
         
-            
-            
-            
-        GroupBox() {
+        
+        
+        
+        //GroupBox() {
+        VStack{
             Label {
                 Text("Harga Rumah")
             } icon: {
-               // Image(systemName: "ruler")
+                // Image(systemName: "ruler")
             }
             .padding(.leading, -180.0)
             HStack{
@@ -57,38 +59,43 @@ struct ContentView: View {
             
             HStack{
                 Spacer()
-                   
+                
                 Button("Clear"){
-                   
+                    
                 }
                 HStack{
                     Text("             ")
                 }
+                //  }
+                //            ZStack(alignmnet: .trailing){
+                //
+                //
+                //            }
+                
+                
+                
+                
             }
-//            ZStack(alignmnet: .trailing){
-//                
-//                
-//            }
-            
-            
-            
-            
+            .padding([.top, .leading, .trailing], 0.0)
         }
-        .padding([.top, .leading, .trailing], 0.0)
+        .padding([.top, .leading])
+        
         
         HStack{
             Button("Hitung") {
                 
             }
+            .font(.title2)
+            
             //Button(/*@START_MENU_TOKEN@*/"Button"/*@END_MENU_TOKEN@*/) {
-                
+            
             //}
         }
         .padding(.top)
         .buttonStyle(.bordered)
         
-       
-
+        Spacer()
+        
     }
 }
 

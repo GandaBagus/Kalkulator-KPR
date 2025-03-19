@@ -13,11 +13,13 @@ struct Hasil: View{
         Text("Hasil Perhitungan")
             .fontWeight(.black)
             .font(.largeTitle)
-        
+            .fontWeight(.bold)
+            .padding(.vertical, 100.0)
             
             
             
-        GroupBox() {
+        //GroupBox() {
+        VStack(spacing:20){
             Label {
                 Text("Cicilan Pokok")
             } icon: {
@@ -56,8 +58,11 @@ struct Hasil: View{
                 Text("Rp     ")
             }
             
-        }
+        //}
         .padding([.top, .leading, .trailing], 0.0)
+        }
+        .padding(.leading)
+            
         
         HStack{
             Button {
@@ -67,12 +72,19 @@ struct Hasil: View{
             label:{
                 Image(systemName: "house.fill")
             }
+            .controlSize(.large)
+            
             Button("Tambah Perhitungan") {
                 
             }
+            .controlSize(.large)
+            .fontWeight(.bold)
+            
         }
-        .padding(.top)
-        .buttonStyle(.bordered)
+        .padding(.top, 50.0)
+        .buttonStyle(.borderedProminent)
+        
+        Spacer()
         
         
        
