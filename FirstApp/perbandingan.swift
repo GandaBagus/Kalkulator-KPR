@@ -9,19 +9,22 @@ import SwiftUI
 
 struct perbandingan: View {
     
-    @Binding var hargaRumah:Double
-    @Binding var lamaTenor:Double
-    @Binding var sukuBunga:Double
-    @Binding var cicilanPokok:Double
-    @Binding var cicilanBunga:Double
-    @Binding var cicilanTotal:Double
+    @Binding var rumah1: rumahKPR
+    @Binding var rumah2: rumahKPR
     
-    @Binding var hargaRumah2:Double
-    @Binding var lamaTenor2:Double
-    @Binding var sukuBunga2:Double
-    @Binding var cicilanPokok2:Double
-    @Binding var cicilanBunga2:Double
-    @Binding var cicilanTotal2:Double
+//    @Binding var hargaRumah:Double
+//    @Binding var lamaTenor:Double
+//    @Binding var sukuBunga:Double
+//    @Binding var cicilanPokok:Double
+//    @Binding var cicilanBunga:Double
+//    @Binding var cicilanTotal:Double
+//    
+//    @Binding var hargaRumah2:Double
+//    @Binding var lamaTenor2:Double
+//    @Binding var sukuBunga2:Double
+//    @Binding var cicilanPokok2:Double
+//    @Binding var cicilanBunga2:Double
+//    @Binding var cicilanTotal2:Double
     var body: some View {
         ZStack{
             Color(.red)
@@ -74,19 +77,19 @@ struct perbandingan: View {
                                     HStack(spacing: 20){
                                         VStack(alignment: .center){
                                             Text("Harga Rumah")
-                                            Text("\(hargaRumah)")
+                                            Text("\(rumah1.hargaRumah)")
                                                 .fontWeight(.bold)
                                             
                                         }
                                         VStack(alignment: .center){
                                             Text("Tenor")
-                                            Text("\(lamaTenor)")
+                                            Text("\(rumah1.lamaTenor)")
                                                 .fontWeight(.bold)
                                             
                                         }
                                         VStack(alignment: .center){
                                             Text("Suku Bunga")
-                                            Text("\(sukuBunga)")
+                                            Text("\(rumah1.sukuBunga)")
                                                 .fontWeight(.bold)
                                             
                                         }
@@ -103,7 +106,7 @@ struct perbandingan: View {
                                     
                                     VStack(alignment: .center){
                                         
-                                        Text("\(cicilanTotal)")
+                                        Text("\(rumah1.cicilanTotal)")
                                             .font(.largeTitle)
                                             .fontWeight(.bold)
                                             .padding()
@@ -117,7 +120,7 @@ struct perbandingan: View {
                                     HStack(spacing:10){
                                         VStack(alignment: .leading){
                                             Text("Cicilan Pokok")
-                                            Text("\(cicilanPokok)")
+                                            Text("\(rumah1.cicilanPokok)")
                                         }
                                         .padding()
                                         .frame(maxWidth: .infinity)
@@ -126,7 +129,7 @@ struct perbandingan: View {
                                         //
                                         VStack(alignment: .leading){
                                             Text("Cicilan Bunga")
-                                            Text("\(cicilanBunga)")
+                                            Text("\(rumah1.cicilanBunga)")
                                         }
                                         .padding()
                                         .frame(maxWidth: .infinity)
@@ -154,19 +157,19 @@ struct perbandingan: View {
                                     HStack(spacing: 20){
                                         VStack(alignment: .center){
                                             Text("Harga Rumah")
-                                            Text("\(hargaRumah2)")
+                                            Text("\(rumah2.hargaRumah)")
                                                 .fontWeight(.bold)
                                             
                                         }
                                         VStack(alignment: .center){
                                             Text("Tenor")
-                                            Text("\(lamaTenor2)")
+                                            Text("\(rumah2.lamaTenor)")
                                                 .fontWeight(.bold)
                                             
                                         }
                                         VStack(alignment: .center){
                                             Text("Suku Bunga")
-                                            Text("\(sukuBunga)")
+                                            Text("\(rumah2.sukuBunga)")
                                                 .fontWeight(.bold)
                                             
                                         }
@@ -184,7 +187,7 @@ struct perbandingan: View {
                                     
                                     VStack(alignment: .center){
                                         
-                                        Text("\(cicilanTotal2)")
+                                        Text("\(rumah2.cicilanTotal)")
                                             .font(.largeTitle)
                                             .fontWeight(.bold)
                                             .padding()
@@ -198,7 +201,7 @@ struct perbandingan: View {
                                     HStack(spacing:10){
                                         VStack(alignment: .leading){
                                             Text("Cicilan Pokok")
-                                            Text("\(cicilanPokok2)")
+                                            Text("\(rumah2.cicilanPokok)")
                                         }
                                         .padding()
                                         .frame(maxWidth: .infinity)
@@ -207,7 +210,7 @@ struct perbandingan: View {
                                         //
                                         VStack(alignment: .leading){
                                             Text("Cicilan Bunga")
-                                            Text("\(cicilanBunga2)")
+                                            Text("\(rumah2.cicilanBunga)")
                                         }
                                         .padding()
                                         .frame(maxWidth: .infinity)
@@ -237,18 +240,4 @@ struct perbandingan: View {
         }
         
     }
-}
-
-#Preview {
-    perbandingan(hargaRumah: Binding.constant(500_000_000),
-                 lamaTenor: Binding.constant(20),
-                 sukuBunga: Binding.constant(5.0),
-                 cicilanPokok: Binding.constant(2_500_000),
-                 cicilanBunga: Binding.constant(500_000),
-                 cicilanTotal: Binding.constant(3_000_000), hargaRumah2: Binding.constant(500_000_000),
-                 lamaTenor2: Binding.constant(20),
-                 sukuBunga2: Binding.constant(5.0),
-                 cicilanPokok2: Binding.constant(2_500_000),
-                 cicilanBunga2: Binding.constant(500_000),
-                 cicilanTotal2: Binding.constant(3_000_000))
 }

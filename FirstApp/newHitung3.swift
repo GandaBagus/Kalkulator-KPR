@@ -5,13 +5,20 @@ struct newHitung3: View {
     var b:Int = 5
     @State var hasil:Int = 0
     
+    @Binding var rumah1: rumahKPR
+    
+//    @Binding var hargaRumah:Double
+//    @Binding var lamaTenor:Double
+//    @Binding var sukuBunga:Double
+//    @Binding var cicilanPokok:Double
+//    @Binding var cicilanBunga:Double
+//    @Binding var cicilanTotal:Double
+    
+    @State var rumah2: rumahKPR = rumahKPR(hargaRumah: 0, lamaTenor: 0,sukuBunga: 0)
     
     @State var hargaRumah2 = 300_000_000.0
     @State var lamaTenor2 = 10.0
     @State var sukuBunga2 = 5.0
-    @State var cicilanPokok2 = 0.0
-    @State var cicilanBunga2 = 0.0
-    @State var cicilanTotal2 = 0.0
     //var isBody: Bool = false
     
     //@Binding var isSecond:Bool
@@ -89,14 +96,14 @@ struct newHitung3: View {
                         // Hitung Button
                         ZStack{
                             
-                            NavigationLink(destination: newHasil3(hargaRumah2:$hargaRumah2, lamaTenor2: $lamaTenor2,sukuBunga2: $sukuBunga2, cicilanPokok2: $cicilanPokok2,cicilanBunga2: $cicilanBunga2, cicilanTotal2: $cicilanTotal2)) {
+                            NavigationLink(destination: newHasil3(rumah1: $rumah1, rumah2: $rumah2)) {
                                 Text("Hitung!")
                             }
                             .simultaneousGesture(TapGesture().onEnded {
                                 //                                                hasil = a+b
                                 //                                               print(hasil)
-                            
-                                hitungkpr()
+                                let newRumah = rumahKPR(hargaRumah: hargaRumah2, lamaTenor: lamaTenor2,sukuBunga: sukuBunga2)
+                                rumah2 = newRumah
                                 
                                 
                                 //print(isSecond)
@@ -173,20 +180,7 @@ struct newHitung3: View {
         
         
     }
-    
-    func hitungkpr(){
-        
-       
-            cicilanPokok2 = hargaRumah2 / (lamaTenor2*12)
-            cicilanBunga2 = (hargaRumah2 * sukuBunga2 * lamaTenor2 / 120)/100
-            cicilanTotal2 = cicilanPokok2 + cicilanBunga2
-            
-            print(cicilanTotal2)
-        
-        
-       
-        
-    }
+
     
     func HapusInput(){
         hargaRumah2 = 0.0
@@ -196,8 +190,3 @@ struct newHitung3: View {
     
 }
 
-
-
-#Preview {
-    newHitung3()
-}

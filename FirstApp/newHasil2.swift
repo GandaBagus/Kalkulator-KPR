@@ -7,12 +7,14 @@
 import SwiftUI
 
 struct newHasil2: View {
-    @Binding var hargaRumah:Double
-    @Binding var lamaTenor:Double
-    @Binding var sukuBunga:Double
-    @Binding var cicilanPokok:Double
-    @Binding var cicilanBunga:Double
-    @Binding var cicilanTotal:Double
+    
+    @Binding var rumah1: rumahKPR
+//    @Binding var hargaRumah:Double
+//    @Binding var lamaTenor:Double
+//    @Binding var sukuBunga:Double
+//    @Binding var cicilanPokok:Double
+//    @Binding var cicilanBunga:Double
+//    @Binding var cicilanTotal:Double
     
     
 //    @Binding var hargaRumah2:Double
@@ -40,7 +42,7 @@ struct newHasil2: View {
                         VStack(spacing: 20){
                             Text("Total Pembayaran").font(.largeTitle).bold()
                             VStack{
-                                Text("\(cicilanTotal)").font(.title).padding(.vertical, 100.0)
+                                Text("\(rumah1.cicilanTotal)").font(.title).padding(.vertical, 100.0)
                             }
                             .padding(.horizontal, 80.0)
                             
@@ -52,7 +54,7 @@ struct newHasil2: View {
                             HStack{
                                 VStack{
                                     Text("Cicilan Pokok").font(.headline).frame(width: 116.0, height: 20.0)
-                                    Text("\(cicilanPokok)")
+                                    Text("\(rumah1.cicilanPokok)")
                                         .frame(width: 116.0, height: 20.0)
                                 }
                                 .padding(.all, 40.0)
@@ -62,7 +64,7 @@ struct newHasil2: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                 VStack{
                                     Text("Cicilan Bunga").font(.headline).frame(width: 116.0, height: 20.0)
-                                    Text("\(cicilanBunga)")
+                                    Text("\(rumah1.cicilanBunga)")
                                         .frame(width: 116.0, height: 20.0)
                                 }
                                 .padding(.all, 30.0)
@@ -82,7 +84,7 @@ struct newHasil2: View {
                                 } icon: {
                                     Image(systemName: "house")
                                 }
-                                Text("\(hargaRumah)")
+                                Text("\(rumah1.hargaRumah)")
                             }
                             Divider()
                             HStack{
@@ -91,7 +93,7 @@ struct newHasil2: View {
                                 } icon: {
                                     Image(systemName: "calendar.badge.clock")
                                 }
-                                Text("\(lamaTenor)")
+                                Text("\(rumah1.lamaTenor)")
                             }
                             Divider()
                             HStack{
@@ -100,7 +102,7 @@ struct newHasil2: View {
                                 } icon: {
                                     Image(systemName: "percent")
                                 }
-                                Text("\(sukuBunga)")
+                                Text("\(rumah1.sukuBunga)")
                             }
                             Divider()
                         }
@@ -120,7 +122,7 @@ struct newHasil2: View {
                     
                     VStack (spacing: -20){
                         
-                        NavigationLink(destination: newHitung3()) {
+                        NavigationLink(destination: newHitung3(rumah1: $rumah1)) {
                             Text("Tambah Perhitungan")
                         }
                         .simultaneousGesture(TapGesture().onEnded {
@@ -138,7 +140,7 @@ struct newHasil2: View {
                         .padding()
                         
                         
-                        NavigationLink(destination: newHitung3()) {
+                        NavigationLink(destination: newHitung2()) {
                             Text("Kembali ke Halaman Utama")
                         }
                         .simultaneousGesture(TapGesture().onEnded {
@@ -185,15 +187,3 @@ struct newHasil2: View {
     }
 }
 
-
-#Preview {
-    newHasil2(
-        hargaRumah: Binding.constant(500_000_000),
-        lamaTenor: Binding.constant(20),
-        sukuBunga: Binding.constant(5.0),
-        cicilanPokok: Binding.constant(2_500_000),
-        cicilanBunga: Binding.constant(500_000),
-        cicilanTotal: Binding.constant(3_000_000)
-        
-    )
-}

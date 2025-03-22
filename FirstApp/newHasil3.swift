@@ -7,14 +7,9 @@
 import SwiftUI
 
 struct newHasil3: View {
-    @Binding var hargaRumah2:Double
-    @Binding var lamaTenor2:Double
-    @Binding var sukuBunga2:Double
-    @Binding var cicilanPokok2:Double
-    @Binding var cicilanBunga2:Double
-    @Binding var cicilanTotal2:Double
     
-    @State var isSecond:Bool = false
+    @Binding var rumah1: rumahKPR
+    @Binding var rumah2: rumahKPR
     
 //    @Binding var hargaRumah2:Double
 //    @Binding var lamaTenor2:Double
@@ -22,6 +17,15 @@ struct newHasil3: View {
 //    @Binding var cicilanPokok2:Double
 //    @Binding var cicilanBunga2:Double
 //    @Binding var cicilanTotal2:Double
+    
+//    @State var isSecond:Bool = false
+//    
+//    @Binding var hargaRumah:Double
+//    @Binding var lamaTenor:Double
+//    @Binding var sukuBunga:Double
+//    @Binding var cicilanPokok:Double
+//    @Binding var cicilanBunga:Double
+//    @Binding var cicilanTotal:Double
     
     var body: some View {
         NavigationStack{
@@ -43,7 +47,7 @@ struct newHasil3: View {
                             Text("Total Pembayaran").font(.largeTitle).bold()
                             
                             VStack{
-                                Text("\(cicilanTotal2)").font(.title).padding(.vertical, 100.0)
+                                Text("\(rumah2.cicilanTotal)").font(.title).padding(.vertical, 100.0)
                             }
                             .padding(.horizontal, 80.0)
                             
@@ -55,7 +59,7 @@ struct newHasil3: View {
                             HStack{
                                 VStack{
                                     Text("Cicilan Pokok").font(.headline).frame(width: 116.0, height: 20.0)
-                                    Text("\(cicilanPokok2)")
+                                    Text("\(rumah2.cicilanPokok)")
                                         .frame(width: 116.0, height: 20.0)
                                 }
                                 .padding(.all, 40.0)
@@ -65,7 +69,7 @@ struct newHasil3: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                 VStack{
                                     Text("Cicilan Bunga").font(.headline).frame(width: 116.0, height: 20.0)
-                                    Text("\(cicilanBunga2)")
+                                    Text("\(rumah2.cicilanBunga)")
                                         .frame(width: 116.0, height: 20.0)
                                 }
                                 .padding(.all, 30.0)
@@ -85,7 +89,7 @@ struct newHasil3: View {
                                 } icon: {
                                     Image(systemName: "house")
                                 }
-                                Text("\(hargaRumah2)")
+                                Text("\(rumah2.hargaRumah)")
                             }
                             Divider()
                             HStack{
@@ -94,7 +98,7 @@ struct newHasil3: View {
                                 } icon: {
                                     Image(systemName: "calendar.badge.clock")
                                 }
-                                Text("\(lamaTenor2)")
+                                Text("\(rumah2.lamaTenor)")
                             }
                             Divider()
                             HStack{
@@ -103,7 +107,7 @@ struct newHasil3: View {
                                 } icon: {
                                     Image(systemName: "percent")
                                 }
-                                Text("\(sukuBunga2)")
+                                Text("\(rumah2.sukuBunga)")
                             }
                             Divider()
                         }
@@ -123,16 +127,16 @@ struct newHasil3: View {
                     
                     VStack (spacing: -20){
                         
-                        NavigationLink(destination: perbandingan()) {
+                        NavigationLink(destination: perbandingan(rumah1: $rumah1, rumah2: $rumah2)) {
                             Text("Bandingkan")
                         }
                         .simultaneousGesture(TapGesture().onEnded {
                             //                                                hasil = a+b
                             //                                                print(hasil)
                             //hitungkpr()
-                            isSecond = true
-                            
-                            print("NavigationLink in newHasil2 tapped! isSecond: \(isSecond)")
+//                            isSecond = true
+//                            
+//                            print("NavigationLink in newHasil2 tapped! isSecond: \(isSecond)")
                         })
                         .foregroundStyle(Color(.black))
                         .padding(.vertical, 20)
@@ -150,9 +154,9 @@ struct newHasil3: View {
                             //                                                hasil = a+b
                             //                                                print(hasil)
                             //hitungkpr()
-                            isSecond = true
-                            
-                            print("NavigationLink in newHasil2 tapped! isSecond: \(isSecond)")
+//                            isSecond = true
+//                            
+//                            print("NavigationLink in newHasil2 tapped! isSecond: \(isSecond)")
                         })
                         .foregroundStyle(Color(.black))
                         .padding(.vertical, 20)
@@ -187,22 +191,10 @@ struct newHasil3: View {
             .background(Color("TintedGreen"))
         }
         .onAppear{
-            print(isSecond)
+//            print(isSecond)
         }
         
         
     }
 }
 
-
-#Preview {
-    newHasil3(
-        hargaRumah2: Binding.constant(500_000_000),
-        lamaTenor2: Binding.constant(20),
-        sukuBunga2: Binding.constant(5.0),
-        cicilanPokok2: Binding.constant(2_500_000),
-        cicilanBunga2: Binding.constant(500_000),
-        cicilanTotal2: Binding.constant(3_000_000)
-        
-    )
-}
