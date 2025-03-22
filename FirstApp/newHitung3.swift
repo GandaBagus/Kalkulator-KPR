@@ -1,18 +1,17 @@
 import SwiftUI
 
-struct newHitung2: View {
+struct newHitung3: View {
     var a:Int = 2
     var b:Int = 5
     @State var hasil:Int = 0
     
-    @State var hargaRumah = 300_000_000.0
-    @State var lamaTenor = 10.0
-    @State var sukuBunga = 5.0
-    @State var cicilanPokok = 0.0
-    @State var cicilanBunga = 0.0
-    @State var cicilanTotal = 0.0
     
-    
+    @State var hargaRumah2 = 300_000_000.0
+    @State var lamaTenor2 = 10.0
+    @State var sukuBunga2 = 5.0
+    @State var cicilanPokok2 = 0.0
+    @State var cicilanBunga2 = 0.0
+    @State var cicilanTotal2 = 0.0
     //var isBody: Bool = false
     
     //@Binding var isSecond:Bool
@@ -31,6 +30,7 @@ struct newHitung2: View {
                             .font(.largeTitle)
                             .foregroundStyle(Color("newcolor"))
                             .frame(maxWidth: .infinity, alignment: .center)
+                        Text("Perhitungan 2")
                     }
                     
                     // Input Fields
@@ -39,7 +39,7 @@ struct newHitung2: View {
                     } icon: {
                         Image(systemName: "house")
                     }
-                    TextField("", value: $hargaRumah, formatter: NumberFormatter() )
+                    TextField("", value: $hargaRumah2, formatter: NumberFormatter() )
                         .padding([.top, .leading, .bottom])
                         .background(RoundedRectangle(cornerRadius: 8).stroke(Color.black.opacity(0.5), lineWidth: 3))
                     
@@ -49,7 +49,7 @@ struct newHitung2: View {
                     } icon: {
                         Image(systemName: "calendar.badge.clock")
                     }
-                    TextField("", value: $lamaTenor,formatter: NumberFormatter() )
+                    TextField("", value: $lamaTenor2,formatter: NumberFormatter() )
                         .padding([.top, .leading, .bottom])
                         .background(RoundedRectangle(cornerRadius: 8).stroke(Color.black.opacity(0.5), lineWidth: 3))
                     
@@ -59,7 +59,7 @@ struct newHitung2: View {
                         Image(systemName: "percent")
                     }
                     
-                    TextField("", value: $sukuBunga,formatter: NumberFormatter() )
+                    TextField("", value: $sukuBunga2,formatter: NumberFormatter() )
                         .padding([.top, .leading, .bottom])
                         .background(RoundedRectangle(cornerRadius: 8).stroke(Color.black.opacity(0.5), lineWidth: 3))
                     //                    Picker("Select Interest", selection: .constant("Suku Bunga")) {
@@ -89,7 +89,7 @@ struct newHitung2: View {
                         // Hitung Button
                         ZStack{
                             
-                            NavigationLink(destination: newHasil2(hargaRumah:$hargaRumah, lamaTenor: $lamaTenor,sukuBunga: $sukuBunga, cicilanPokok: $cicilanPokok,cicilanBunga: $cicilanBunga, cicilanTotal: $cicilanTotal)) {
+                            NavigationLink(destination: newHasil3(hargaRumah2:$hargaRumah2, lamaTenor2: $lamaTenor2,sukuBunga2: $sukuBunga2, cicilanPokok2: $cicilanPokok2,cicilanBunga2: $cicilanBunga2, cicilanTotal2: $cicilanTotal2)) {
                                 Text("Hitung!")
                             }
                             .simultaneousGesture(TapGesture().onEnded {
@@ -177,11 +177,11 @@ struct newHitung2: View {
     func hitungkpr(){
         
        
-            cicilanPokok = hargaRumah / (lamaTenor*12)
-            cicilanBunga = (hargaRumah * sukuBunga * lamaTenor / 120)/100
-            cicilanTotal = cicilanPokok + cicilanBunga
+            cicilanPokok2 = hargaRumah2 / (lamaTenor2*12)
+            cicilanBunga2 = (hargaRumah2 * sukuBunga2 * lamaTenor2 / 120)/100
+            cicilanTotal2 = cicilanPokok2 + cicilanBunga2
             
-            print(cicilanTotal)
+            print(cicilanTotal2)
         
         
        
@@ -189,9 +189,9 @@ struct newHitung2: View {
     }
     
     func HapusInput(){
-        hargaRumah = 0.0
-        lamaTenor = 0.0
-        sukuBunga = 0.0
+        hargaRumah2 = 0.0
+        lamaTenor2 = 0.0
+        sukuBunga2 = 0.0
     }
     
 }
@@ -199,5 +199,5 @@ struct newHitung2: View {
 
 
 #Preview {
-    newHitung2()
+    newHitung3()
 }
