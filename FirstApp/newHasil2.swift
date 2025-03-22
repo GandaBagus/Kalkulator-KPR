@@ -7,6 +7,13 @@
 import SwiftUI
 
 struct newHasil2: View {
+    @Binding var hargaRumah:Double
+    @Binding var lamaTenor:Double
+    @Binding var sukuBunga:Double
+    @Binding var cicilanPokok:Double
+    @Binding var cicilanBunga:Double
+    @Binding var cicilanTotal:Double
+    
     var body: some View {
         ZStack {
             VStack {
@@ -24,7 +31,7 @@ struct newHasil2: View {
                     VStack(spacing: 20){
                         Text("Total Pembayaran").font(.largeTitle).bold()
                         VStack{
-                            Text("Rp.3.250.000").font(.title).padding(.vertical, 100.0)
+                            Text("\(cicilanTotal)").font(.title).padding(.vertical, 100.0)
                         }
                         .padding(.horizontal, 80.0)
                         
@@ -36,7 +43,7 @@ struct newHasil2: View {
                         HStack{
                             VStack{
                                 Text("Cicilan Pokok").font(.headline).frame(width: 116.0, height: 20.0)
-                                Text("Rp.2.000.000")
+                                Text("\(cicilanPokok)")
                                     .frame(width: 116.0, height: 20.0)
                             }
                             .padding(.all, 40.0)
@@ -46,7 +53,7 @@ struct newHasil2: View {
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                             VStack{
                                 Text("Cicilan Bunga").font(.headline).frame(width: 116.0, height: 20.0)
-                                Text("Rp.1.250.000")
+                                Text("\(cicilanBunga)")
                                     .frame(width: 116.0, height: 20.0)
                             }
                             .padding(.all, 30.0)
@@ -66,7 +73,7 @@ struct newHasil2: View {
                             } icon: {
                                 Image(systemName: "house")
                             }
-                            Text("Rp 2.000.000")
+                            Text("\(hargaRumah)")
                         }
                         Divider()
                         HStack{
@@ -75,7 +82,7 @@ struct newHasil2: View {
                             } icon: {
                                 Image(systemName: "calendar.badge.clock")
                             }
-                            Text("10 Tahun")
+                            Text("\(lamaTenor)")
                         }
                         Divider()
                         HStack{
@@ -84,7 +91,7 @@ struct newHasil2: View {
                             } icon: {
                                 Image(systemName: "percent")
                             }
-                            Text("10%")
+                            Text("\(sukuBunga)")
                         }
                         Divider()
                     }
@@ -103,6 +110,7 @@ struct newHasil2: View {
                 Spacer() // Pushes content to center
                 
                 VStack (spacing: -20){
+                    
                     Button {
                         // Put what to calculate
                     } label: {
@@ -134,7 +142,9 @@ struct newHasil2: View {
                 
                 Spacer()
             }
-            
+            .onAppear(perform: {
+                // 
+            })
             
             .padding()
             
@@ -146,5 +156,12 @@ struct newHasil2: View {
 
 
 #Preview {
-    newHasil2()
+    newHasil2(
+            hargaRumah: Binding.constant(500_000_000),
+            lamaTenor: Binding.constant(20),
+            sukuBunga: Binding.constant(5.0),
+            cicilanPokok: Binding.constant(2_500_000),
+            cicilanBunga: Binding.constant(500_000),
+            cicilanTotal: Binding.constant(3_000_000)
+        )
 }
