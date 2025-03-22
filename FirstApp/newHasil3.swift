@@ -123,8 +123,8 @@ struct newHasil3: View {
                     
                     VStack (spacing: -20){
                         
-                        NavigationLink(destination: newHitung2()) {
-                            Text("Tambah Perhitungan")
+                        NavigationLink(destination: perbandingan()) {
+                            Text("Bandingkan")
                         }
                         .simultaneousGesture(TapGesture().onEnded {
                             //                                                hasil = a+b
