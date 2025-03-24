@@ -26,6 +26,8 @@ struct Hitung: View {
     private var isInputValid: Bool {
            hargaRumah > 0 && lamaTenor > 0 && sukuBunga > 0
        }
+    
+    @State var isAlertPresented : Bool = false
     //var isBody: Bool = false
     
     //@Binding var isSecond:Bool
@@ -90,10 +92,14 @@ struct Hitung: View {
                     //                    .foregroundStyle(Color("newcolor"))
                     //                    .tint(.primary)
                     if showWarning {
+                        VStack{
+                            Color.red
+                        }
                                         Text("⚠️ Harap isi semua field sebelum melanjutkan.")
                                             .foregroundColor(.red)
                                             .padding()
                                     }
+                         
                     
                     VStack (spacing: 1){
                         HStack {
@@ -112,14 +118,15 @@ struct Hitung: View {
                             .simultaneousGesture(TapGesture().onEnded {
                                 if isInputValid {
                                     //                                                        rumah1 = rumahKPR(hargaRumah: hargaRumah, lamaTenor: lamaTenor, sukuBunga: sukuBunga)
-                                    //                                                    } else {
-                                    //                                                        showWarning = true
                                     //                                                    }
                                     //                                                hasil = a+b
                                     //                                               print(hasil)
-                                    let newRumah = rumahKPR(hargaRumah: hargaRumah, lamaTenor: lamaTenor,sukuBunga: sukuBunga)
-                                    rumah = newRumah
-                                }
+//                                    let newRumah = rumahKPR(hargaRumah: hargaRumah, lamaTenor: lamaTenor,sukuBunga: sukuBunga)
+//                                    rumah = newRumah
+                                }else {
+                                                                                            showWarning = true
+                                                                                        }
+                                
                                 
                                 //print(isSecond)
                                 
@@ -132,6 +139,12 @@ struct Hitung: View {
                             .background(RoundedRectangle(cornerRadius: 8).stroke( Color.black.opacity(0.05), lineWidth: 2))
                             .padding()
                             .disabled(!isInputValid)
+                            .onTapGesture {
+                                if (!isInputValid){
+                                    isAlertPresented = true
+                                }
+                                print("test")
+                            }
                         //}
                             
                             
@@ -150,6 +163,12 @@ struct Hitung: View {
             .frame(maxHeight: .infinity)
             //.background(Color("TintedGreen")) // Extends green background
             .ignoresSafeArea(.all)
+            .alert("Data Tidak Valid",isPresented: $isAlertPresented, actions:{
+                Button("Kembali"){}
+                
+            }, message:{
+                Text("Pastikan semua data terisi")
+            })
         }
         .foregroundStyle(Color("newcolor"))
         
