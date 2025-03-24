@@ -1,32 +1,31 @@
+//
+//  hitung.swift
+//  FirstApp
+//
+//  Created by Ganda Bagus Wibisono on 23/03/25.
+//
+
 import SwiftUI
 
-struct rumahKPR{
-    var hargaRumah: Double = 0
-    var lamaTenor: Double = 0
-    var sukuBunga: Double = 0
-    var cicilanPokok: Double{
-        hargaRumah / (lamaTenor*12)
-    }
-    var cicilanBunga: Double{
-        (hargaRumah * sukuBunga * lamaTenor / 120)/100
-    }
-    var cicilanTotal: Double{
-        cicilanPokok + cicilanBunga
-    }
-}
 
-struct newHitung2: View {
+struct Hitung: View {
     var a:Int = 2
     var b:Int = 5
     @State var hasil:Int = 0
     
-    @State var rumah1: rumahKPR = rumahKPR(hargaRumah: 0, lamaTenor: 0,sukuBunga: 0)
+    @Binding var rumah: rumahKPR
+    @Binding var rumah1IsInputed: Bool
+    @Binding var rumah2IsInputed: Bool
     
-    @State var hargaRumah = 300_000_000.0
-    @State var lamaTenor = 10.0
-    @State var sukuBunga = 5.0
+    @State var hargaRumah = 0.0
+    @State var lamaTenor = 0.0
+    @State var sukuBunga = 0.0
     
+    @State private var showWarning = false
     
+    private var isInputValid: Bool {
+           hargaRumah > 0 && lamaTenor > 0 && sukuBunga > 0
+       }
     //var isBody: Bool = false
     
     //@Binding var isSecond:Bool
@@ -90,6 +89,11 @@ struct newHitung2: View {
                     //                    .background(RoundedRectangle(cornerRadius: 8).stroke(Color.black.opacity(0.5), lineWidth: 3))
                     //                    .foregroundStyle(Color("newcolor"))
                     //                    .tint(.primary)
+                    if showWarning {
+                                        Text("⚠️ Harap isi semua field sebelum melanjutkan.")
+                                            .foregroundColor(.red)
+                                            .padding()
+                                    }
                     
                     VStack (spacing: 1){
                         HStack {
@@ -101,16 +105,21 @@ struct newHitung2: View {
                         
                         
                         // Hitung Button
-                        ZStack{
-                            
-                            NavigationLink(destination: newHasil2(rumah1: $rumah1)) {
+                        //if(isInputValid){
+                            NavigationLink(destination: Hasil(rumah: $rumah, rumah1IsInputed: $rumah1IsInputed, rumah2IsInputed: $rumah2IsInputed)) {
                                 Text("Hitung!")
                             }
                             .simultaneousGesture(TapGesture().onEnded {
-                                //                                                hasil = a+b
-                                //                                               print(hasil)
-                                let newRumah = rumahKPR(hargaRumah: hargaRumah, lamaTenor: lamaTenor,sukuBunga: sukuBunga)
-                                rumah1 = newRumah
+                                if isInputValid {
+                                    //                                                        rumah1 = rumahKPR(hargaRumah: hargaRumah, lamaTenor: lamaTenor, sukuBunga: sukuBunga)
+                                    //                                                    } else {
+                                    //                                                        showWarning = true
+                                    //                                                    }
+                                    //                                                hasil = a+b
+                                    //                                               print(hasil)
+                                    let newRumah = rumahKPR(hargaRumah: hargaRumah, lamaTenor: lamaTenor,sukuBunga: sukuBunga)
+                                    rumah = newRumah
+                                }
                                 
                                 //print(isSecond)
                                 
@@ -119,50 +128,13 @@ struct newHitung2: View {
                             .foregroundStyle(Color(.black))
                             .padding(.vertical, 20)
                             .frame(maxWidth: .infinity)
-                            
                             .fontWeight(.bold)
                             .background(RoundedRectangle(cornerRadius: 8).stroke( Color.black.opacity(0.05), lineWidth: 2))
                             .padding()
-                            
-                            //                            NavigationLink {
-                            //                                    // MARK: Destination View
-                            //                                    newHasil2()
-                            //                                } label: {
-                            //                                    Text("New Calculation")
-                            //                                }
-                            //                            Button {
-                            //                                //NavigationStack{
-                            //
-                            //                                //}
-                            //
-                            //                                //Change()
-                            //                                //newHasil2()
-                            //                                // Calculate action
-                            //
-                            //                                //print("test")
-                            //                            } label: {
-                            //                                Text("Hitung")
-                            //                                    .foregroundStyle(Color(.white))
-                            //                                    .padding(.vertical, 20)
-                            //                                    .frame(maxWidth: .infinity)
-                            //                                    .background(Color("newcolor"))
-                            //                                    .fontWeight(.bold)
-                            //                            }
-                            
-                            .clipShape(RoundedRectangle(cornerRadius: 50))
-                            .padding()
-                            
-                            //                            NavigationLink {
-                            //                                    // MARK: Destination View
-                            //                                    newHasil2()
-                            //                                } label: {
-                            //                                    Text("New Calculation")
-                            //                                }
+                            .disabled(!isInputValid)
+                        //}
                             
                             
-                            
-                        }
-                        
                     }
                     
                     
@@ -187,6 +159,7 @@ struct newHitung2: View {
         
     }
     
+   
     
     func HapusInput(){
         hargaRumah = 0.0
@@ -197,7 +170,3 @@ struct newHitung2: View {
 }
 
 
-
-#Preview {
-    newHitung2()
-}
