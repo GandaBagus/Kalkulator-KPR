@@ -18,20 +18,30 @@ struct Hitung: View {
     @Binding var rumah2IsInputed: Bool
     
     @State var hargaRumah = 0.0
-    @State var lamaTenor = 0.0
-    @State var sukuBunga = 0.0
+    @State var lamaTenor : Double = 0.0
+    @State var sukuBunga : Double = 0.0
     
     @State private var showWarning = false
     
     private var isInputValid: Bool {
-           hargaRumah > 0 && lamaTenor > 0 && sukuBunga > 0
+        hargaRumah > 0 && lamaTenor > 0 && sukuBunga > 0
        }
     
     @State var isAlertPresented : Bool = false
+    @State private var showSheet: Bool = false
     //var isBody: Bool = false
     
     //@Binding var isSecond:Bool
-    
+//    var availableInterestRates: [Double] {
+//        if lamaTenor == 10 {
+//                return [2.5] // Only 2.5% for 10 years
+//            } else if let years = lamaTenor, years > 0 {
+//                return [3.0, 3.5, 4.0] // Other terms get standard rates
+//            } else {
+//                return [] // Invalid input, no rates
+//            }
+//        }
+
     
     var body: some View {
         NavigationStack{
@@ -73,10 +83,18 @@ struct Hitung: View {
                     } icon: {
                         Image(systemName: "percent")
                     }
+
                     
-                    TextField("", value: $sukuBunga,formatter: NumberFormatter() )
-                        .padding([.top, .leading, .bottom])
-                        .background(RoundedRectangle(cornerRadius: 8).stroke(Color.black.opacity(0.5), lineWidth: 3))
+                    
+                    Button("\(sukuBunga, specifier: "%.1f")%           "){
+                        showSheet = true
+                    }
+                    .frame(maxWidth:.infinity)
+                    .padding([.top, .leading, .bottom])
+//                    .background(Color.red)
+//                    .frame(maxWidth:.infinity)
+                    .background(RoundedRectangle(cornerRadius: 8).stroke(Color.black.opacity(0.5), lineWidth: 3))
+
                     //                    Picker("Select Interest", selection: .constant("Suku Bunga")) {
                     //                        Text("Suku Bunga").tag("Suku Bunga")
                     //                        Text("2.5%").tag("2.5%")
@@ -121,8 +139,8 @@ struct Hitung: View {
                                     //                                                    }
                                     //                                                hasil = a+b
                                     //                                               print(hasil)
-//                                    let newRumah = rumahKPR(hargaRumah: hargaRumah, lamaTenor: lamaTenor,sukuBunga: sukuBunga)
-//                                    rumah = newRumah
+                                    let newRumah = rumahKPR(hargaRumah: hargaRumah, lamaTenor: lamaTenor,sukuBunga: sukuBunga)
+                                    rumah = newRumah
                                 }else {
                                                                                             showWarning = true
                                                                                         }
@@ -143,8 +161,12 @@ struct Hitung: View {
                                 if (!isInputValid){
                                     isAlertPresented = true
                                 }
-                                print("test")
+                                
+                                
                             }
+//                        if let interestRate = sukuBunga {
+//                                           Text("Selected Interest Rate: \(interestRate, specifier: "%.1f")%")
+//                                       }
                         //}
                             
                             
@@ -160,6 +182,7 @@ struct Hitung: View {
                 
                 //Spacer() // Ensures green extends fully
             }
+            
             .frame(maxHeight: .infinity)
             //.background(Color("TintedGreen")) // Extends green background
             .ignoresSafeArea(.all)
@@ -169,6 +192,15 @@ struct Hitung: View {
             }, message:{
                 Text("Pastikan semua data terisi")
             })
+            
+            .sheet(isPresented: $showSheet) {
+                InterestRateSheet(selectedRate: Binding(
+                    get: { sukuBunga }, // No need for nil coalescing (??)
+                    set: { sukuBunga = $0 }
+                ))
+                            .presentationDetents([.medium])  // Medium Sheet
+                    }
+            
         }
         .foregroundStyle(Color("newcolor"))
         
@@ -186,6 +218,42 @@ struct Hitung: View {
         sukuBunga = 0.0
     }
     
+ 
+    
 }
 
+struct InterestRateSheet: View {
+    @Binding var selectedRate: Double
+    let availableRates: [Double] = [2.5, 3.0, 3.5, 4.0, 5.0,6.0, 7.0]
+    
+    
+    
+    
+
+    var body: some View {
+        VStack {
+                   Text("Pilih Suku Bunga")
+                       .font(.headline)
+                       .padding()
+            List{
+                ForEach(availableRates, id: \.self) { rate in
+                    Button("\(rate, specifier: "%.1f")%") {
+                        selectedRate = rate
+                    }
+                    .padding([.top, .leading, .bottom])
+                    .frame(maxWidth:.infinity)
+                    .background(RoundedRectangle(cornerRadius: 0).stroke(Color.black.opacity(0.5), lineWidth: 1))
+                    .background(Color("TintedGreen"))
+            }
+//                .background(Color("TintedGreen"))
+                   
+                       
+                       
+                   }
+            .background(Color("TintedGreen"))
+               }
+        .background(Color("TintedGreen"))
+           }
+    
+}
 
